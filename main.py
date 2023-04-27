@@ -16,6 +16,7 @@ class NodeEdge():
 
 nodes: list[Node] = []
 edges = []
+safeNodes: list[int] = []
 
 lines = open('gtapaths.txt').readlines()
 i = 0  # Declares i in global scope so that the edges loop knows where to start
@@ -32,6 +33,9 @@ for i, line in enumerate(lines):
     if len(tokens) != 1:
         node = Node(float(tokens[0].strip()), float(tokens[1].strip()), float(tokens[2].strip()))
         nodes.append(node)
+        if int(tokens[4]) == 0:
+            safeIndex: int = len(nodes) - 1
+            safeNodes.append(int(safeIndex))
 
 # Parse all edges
 for j, line in enumerate(lines[i::]):  # Splice list of lines to start off where the node list ended
@@ -65,5 +69,11 @@ f.close()
 print('successful')
 print('Total Nodes: ' + str(len(nodes)))
 print('Total Edges: ' + str(len(edges)))
+
+f2 = open("safe-nodes.txt", "w")
+f2.write(json.dumps(safeNodes))
+f2.close()
+
+print("Total Safe Nodes: " + str(len(safeNodes)))
 
 
