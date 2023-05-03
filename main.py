@@ -50,6 +50,12 @@ for j, line in enumerate(lines[i::]):  # Splice list of lines to start off where
         node2 = int(tokens[1].strip())
         edges.append(NodeEdge(node1, node2))
 
+        # This flag means that this edge is 2-way, so add another edge going the other way
+        #print(tokens[4])
+        if int(tokens[4]) != 0:
+            edges.append(NodeEdge(node2, node1))
+
+
 
 # Convert nodes and edges to dictionaries so they can be formatted as JSON
 nodeDicts = [node.__dict__ for node in nodes]
