@@ -33,7 +33,7 @@ for i, line in enumerate(lines):
     if len(tokens) != 1:
         node = Node(float(tokens[0].strip()), float(tokens[1].strip()), float(tokens[2].strip()))
         nodes.append(node)
-        if int(tokens[4]) == 0:
+        if int(tokens[7]) == 0 and int(tokens[4]) == 0:
             safeIndex: int = len(nodes) - 1
             safeNodes.append(int(safeIndex))
 
